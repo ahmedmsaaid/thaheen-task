@@ -58,7 +58,7 @@ class PlayerScrollView extends StatelessWidget {
             isDone: isDone,
             onCountdownNext: onCountdownNext,
             onCountdownCancel: onCountdownCancel,
-            onNextLessonTap: () => act.next(context),
+            onNextLessonTap: () => act.next(context, data.nextLesson?.id),
           ),
           SliverToBoxAdapter(
             child: LessonInfoSection(

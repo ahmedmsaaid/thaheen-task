@@ -27,20 +27,19 @@ class LessonPlayerContent extends ConsumerStatefulWidget {
 class _State extends ConsumerState<LessonPlayerContent> {
   bool _showCountdown = false;
   late final BetterPlayerService _srv;
-  late final LessonPlayerActions _act;
+  LessonPlayerActions get _act => LessonPlayerActions(
+        ref: ref,
+        service: _srv,
+        courseId: widget.courseId,
+        lessonId: widget.playerData.currentLesson.id,
+        nextLessonId: widget.playerData.nextLesson?.id,
+        isMounted: () => mounted,
+      );
 
   @override
   void initState() {
     super.initState();
     _srv = ref.read(betterPlayerServiceProvider);
-    _act = LessonPlayerActions(
-      ref: ref,
-      service: _srv,
-      courseId: widget.courseId,
-      lessonId: widget.playerData.currentLesson.id,
-      nextLessonId: widget.playerData.nextLesson?.id,
-      isMounted: () => mounted,
-    );
     WidgetsBinding.instance.addPostFrameCallback((_) => _initPlayer());
   }
 

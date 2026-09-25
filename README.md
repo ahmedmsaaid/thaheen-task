@@ -1,240 +1,238 @@
-# 🧠 منصة ذهين التعليمية المصغرة (Thaheen Mini Offline LMS)
+# 🧠 Thaheen Mini Offline LMS (Health Sciences Learning Platform)
 
-> **تطبيق تعليمي مصغر أوفلاين (Offline-First)** مبني خصيصاً لمهمة الفحص الفني (Screening Task) لمنصة **ذهين (Thaheen)** لطلاب العلوم الصحية، ومطور بأعلى معايير **Clean Architecture** و **Feature-Driven Design** باستخدام **Flutter** و **Riverpod**.
+> **A production-grade, 100% Offline-First Learning Management System (LMS)** built as a Technical Screening Task for **Thaheen (ذهين)** healthcare students. Engineered with modern **Clean Architecture**, **Feature-Driven Design**, **Riverpod 2.0**, and **Strict SOLID Principles** in Flutter.
 
----
-
-## 📑 جدول المحتويات
-1. [نظرة عامة على المشروع (Project Overview)](#-نظرة-عامة-على-المشروع)
-2. [متطلبات التشغيل وخطوات البدء (Getting Started)](#-متطلبات-التشغيل-وخطوات-البدء)
-3. [المعمارية وهيكل المشروع (Clean Architecture)](#-المعمارية-وهيكل-المشروع)
-4. [مصفوفة تحقيق المتطلبات (Requirements Matrix)](#-مصفوفة-تحقيق-المتطلبات-requirements-matrix)
-5. [المميزات الأساسية المطلوبة (Core & Required Features)](#-أولا-المميزات-الأساسية-المطلوبة-core--required-features)
-6. [المميزات الإضافية المبتكرة (Bonus & Extra Features)](#-ثانيا-المميزات-الإضافية-المبتكرة-bonus--value-added-features)
-7. [التجاوب الكامل مع الشاشات (Screen Responsiveness)](#-التجاوب-الكامل-مع-الشاشات-screen-responsiveness)
-8. [استراتيجية الاختبارات وضمان الجودة (Testing & QA)](#-استراتيجية-الاختبارات-وضمان-الجودة)
-9. [الخيارات التقنية والتبريرات الهندسية (Technical Decisions)](#-الخيارات-التقنية-والتبريرات-الهندسية)
-10. [خارطة الطريق والتحسينات المستقبلية (Roadmap & Future Enhancements)](#-خارطة-الطريق-والتحسينات-المستقبلية-roadmap--future-enhancements)
-11. [مطور المشروع (Project Developer)](#-مطور-المشروع-project-developer)
+[🇸🇦 النسخة العربية (Arabic Version)](README_AR.md)
 
 ---
 
-## 🌟 نظرة عامة على المشروع
-
-تم بناء التطبيق ليعمل **أوفلاين بنسبة 100%** دون الحاجة لأي اتصال بالإنترنت، حيث تُحمّل بيانات الكورسات والوحدات والدروس محلياً من `assets/data/courses.json` وتُعرض الفيديوهات المرفقة بسلاسة تامة. يركز التطبيق على تجربة مستخدم فائقة الجودة لطلاب الطب والعلوم الصحية مع دعم كامل للغة العربية (RTL) وخط **Cairo** الموحد.
+## 📑 Table of Contents
+1. [Project Overview](#-project-overview)
+2. [Getting Started & Prerequisites](#-getting-started--prerequisites)
+3. [Architecture & Folder Structure](#-architecture--folder-structure)
+4. [Requirements Compliance Matrix](#-requirements-compliance-matrix)
+5. [Core & Required Features](#-core--required-features)
+6. [Bonus & Value-Added Features](#-bonus--value-added-features)
+7. [Screen Responsiveness & Fluid UI](#-screen-responsiveness--fluid-ui)
+8. [Testing & Quality Assurance](#-testing--quality-assurance)
+9. [Technical Stack & Design Decisions](#-technical-stack--design-decisions)
+10. [Roadmap & Production Enhancements](#-roadmap--production-enhancements)
+11. [Project Developer](#-project-developer)
 
 ---
 
-## 🚀 متطلبات التشغيل وخطوات البدء
+## 🌟 Project Overview
 
-### المتطلبات الأساسية (Prerequisites)
-* **Flutter SDK**: `^3.19.0` أو أحدث (موصى به Dart `^3.3.0+`)
+**Thaheen Mini LMS** is designed to provide medical and health sciences students with an uninterrupted, distraction-free educational experience that operates **100% offline**. All courses, modules, lessons, and video content are bundled locally within the app bundle (`assets/data/courses.json` and local MP4 assets), with real-time watch progress tracked locally using persistent storage.
+
+### Key Highlights
+* **Zero Internet Required**: All assets and data loaded completely offline.
+* **Arabic & RTL Native**: Full Right-To-Left layout integration with unified **Cairo** typography.
+* **Strict Architecture Rules**: No file exceeds 100 lines of code; zero hardcoded strings.
+* **Robust Automated Testing**: 34 Unit & Widget tests covering domain rules, state changes, and UI workflows.
+
+---
+
+## 🚀 Getting Started & Prerequisites
+
+### Prerequisites
+* **Flutter SDK**: `^3.19.0` or later (Dart `^3.3.0+`)
 * **Java JDK**: 17+
-* **Android Studio / VS Code** مع إضافات Flutter و Dart
+* **Android Studio / VS Code** with Flutter & Dart extensions installed
 
-### خطوات التشغيل (Run Commands)
+### Quick Start Commands
 
 ```bash
-# 1. استنساخ المستودع والدخول للمجلد
-cd thaheen
+# 1. Clone repository and navigate to directory
+git clone git@github.com:ahmedmsaaid/thaheen-task.git
+cd thaheen-task
 
-# 2. تثبيت الحزم والاعتماديات
+# 2. Install dependencies
 flutter pub get
 
-# 3. تشغيل التطبيق على المحاكي أو الجهاز الحقيقي
+# 3. Run the application on connected device/emulator
 flutter run
 
-# 4. تشغيل حزمة الاختبارات الشاملة (Unit + Widget Tests)
+# 4. Execute full automated test suite (34 Unit + Widget tests)
 flutter test
 
-# 5. فحص جودة ونظافة الكود (Static Analysis)
+# 5. Run static analysis for code quality & style checks
 dart analyze lib test
 ```
 
 ---
 
-## 📐 المعمارية وهيكل المشروع
+## 📐 Architecture & Folder Structure
 
-تم تطبيق **Clean Architecture** المدمجة مع **Feature-First Pattern** لضمان فصل الاهتمامات وقابلية التوسع والاختبار، مع الالتزام الصارم بقاعدة **عدم تجاوز أي ملف 100 سطر برمجي** وحظر النصوص الثابتة (Zero Hardcoded Strings):
+The project follows **Clean Architecture** combined with a **Feature-Driven Pattern** to enforce separation of concerns, high maintainability, and testability.
 
 ```
 lib/
-├── main.dart
-├── core/                         # الطبقة المشتركة عبر التطبيق
-│   ├── constants/                # نصوص التطبيق، المسارات، والأصول
-│   ├── providers/                # الـ Dependency Injection ومزودي الحالة الأساسيين
-│   ├── router/                   # التوجيه وانتقالات الصفحات (GoRouter & Transitions)
-│   ├── theme/                    # الثيم المزدوج، الألوان، وخط Cairo
-│   ├── utils/                    # دوال المساعدة والتنبيهات
-│   └── widgets/                  # المكونات المشتركة القابلة لإعادة الاستخدام
-└── features/                     # موديولات الميزات المستقلة
-    ├── splash/                   # شاشة البداية والتحميل
-    ├── main_layout/              # الشاشة الرئيسية مع الـ Floating Bottom Navigation
-    ├── courses/                  # استعراض الكورسات وكارت متابعة المشاهدة
-    ├── course_details/           # تفاصيل الكورس، الوحدات، والدروس المقفولة
-    ├── watched_courses/          # الكورسات المكتملة وتاريخ المشاهدة
-    ├── progress_tracking/        # إحصائيات ونسبة الإنجاز التراكمية
-    ├── lesson_player/            # مشغل الفيديو، العلامة المائية، وقاعدة الـ 90%
-    └── settings/                 # التحكم بالوضع الليلي / النهاري
+├── main.dart                     # App entry point with ProviderScope & ScreenUtilInit
+├── core/                         # Shared core infrastructure layer
+│   ├── constants/                # AppStrings, Asset paths, and static configurations
+│   ├── providers/                # Global dependency injection & shared providers
+│   ├── router/                   # GoRouter configuration & custom smooth transitions
+│   ├── theme/                    # Dynamic dual-theme system, AppColors & typography
+│   ├── utils/                    # Helper utilities, toasts, formatters & extensions
+│   └── widgets/                  # Reusable atomic UI widgets
+└── features/                     # Independent domain & feature slices
+    ├── splash/                   # Animated startup screen
+    ├── main_layout/              # Root scaffold with floating navigation & mini player
+    ├── courses/                  # Course catalog & "Continue Watching" smart card
+    ├── course_details/           # Module tree, lesson states, and locked lesson modal
+    ├── watched_courses/          # History of opened/completed courses & timestamps
+    ├── progress_tracking/        # Learning statistics, total hours & achievement badges
+    ├── lesson_player/            # Custom video player, watermark, and 90% completion
+    └── settings/                 # Theme toggle (Dark/Light mode) & user preferences
 ```
 
 ---
 
-## 📋 مصفوفة تحقيق المتطلبات (Requirements Matrix)
+## 📋 Requirements Compliance Matrix
 
-| المتطلب في الوثيقة | الحالة | التفاصيل وطريقة التنفيذ |
+| Requirement (from Spec) | Status | Implementation Details |
 |:---|:---:|:---|
-| **Bundled Offline Data** | ✅ **مكتمل** | قراءة وتخزين ملف `courses.json` محلياً مع ربط مسارات الـ MP4 المدمجة. |
-| **Courses Screen** | ✅ **مكتمل** | كروت الكورسات (العنوان، المحاضر، عدد الدروس، نسبة التقدم) + كارت **Continue Watching**. |
-| **Course Details Screen** | ✅ **مكتمل** | شجرة الوحدات والدروس، وتحديد حالات الدروس (مكتمل / قيد المشاهدة / مقفول). |
-| **Sequential Unlocking** | ✅ **مكتمل** | حظر فتح أي درس إلا بعد إتمام الدرس السابق، مع نافذة توضيحية منبثقة عند المحاولة. |
-| **90% Completion Rule** | ✅ **مكتمل** | اعتبار الدرس مكتملاً رسمياً وتحديث حالة القفل عند تجاوز نسبة المشاهدة 90%. |
-| **Video Player Capabilities** | ✅ **مكتمل** | دعم التشغيل، الإيقاف، الـ Seek، التحكم بالسرعات (1x, 1.25x, 1.5x, 2x)، وميزة PiP. |
-| **Auto/Prompt Next Lesson** | ✅ **مكتمل** | إشعار ذكي أو نافذة سفلية تقترح تشغيل الدرس التالي فور انتهاء الفيديو في المشغل أو الشاشة الرئيسية. |
-| **Local Persistence** | ✅ **مكتمل** | حفظ واسترجاع ثواني المشاهدة وحالات الإنجاز عبر `SharedPreferences` محلياً. |
-| **Arabic & RTL Support** | ✅ **مكتمل** | دعم RTL كامل للواجهات ومشغل الفيديو مع استخدام خط **Cairo** الموحد. |
-| **State Handling** | ✅ **مكتمل** | معالجة حالات التحميل (Lottie)، القوائم الفارغة (Empty State)، والأخطاء (Error State). |
-| **Automated Tests** | ✅ **مكتمل** | **34 اختباراً ناجحاً** (Unit Tests لقواعد البيانات والمنطق + Widget Tests للمكونات). |
+| **Bundled Offline Data** | ✅ **Completed** | Bundled `courses.json` with local asset video files. |
+| **Courses Screen** | ✅ **Completed** | Grid/List view with progress bars, instructor metadata, and **Continue Watching** card. |
+| **Course Details Screen** | ✅ **Completed** | Hierarchical module & lesson tree with status icons (Not Started, In Progress, Completed, Locked). |
+| **Sequential Unlocking** | ✅ **Completed** | Enforces strict sequence. First lesson unlocked; subsequent lessons unlock only after previous completion. |
+| **90% Completion Rule** | ✅ **Completed** | Lesson marked completed and next lesson unlocked automatically when $\ge 90\%$ watched. |
+| **Advanced Video Player** | ✅ **Completed** | Play/Pause, RTL interactive Seek Bar, +10s/-10s buttons, Speed control (1x–2x), Fullscreen & PiP. |
+| **Auto/Prompt Next Lesson** | ✅ **Completed** | Countdown banner & prompt bottom sheet suggesting next lesson upon video completion. |
+| **Local Persistence** | ✅ **Completed** | Persistent watch progress, completion flags, and timestamps via `SharedPreferences`. |
+| **Arabic & RTL Support** | ✅ **Completed** | Native RTL layouts, mirrored icons, and unified Cairo typography. |
+| **State & Error Handling** | ✅ **Completed** | Custom Lottie loading, Empty course state, and explicit Failed state test lessons with retry actions. |
+| **Automated Tests** | ✅ **Completed** | **34 Tests passing** (Unit tests for domain math + Widget tests for interactions). |
 
 ---
 
-## 🎯 أولاً: المميزات الأساسية المطلوبة (Core & Required Features)
+## 🎯 Core & Required Features
 
-وهي كافة المتطلبات المذكورة نصاً في وثيقة التقييم الفني (**Screening Task PDF**):
+All mandatory technical specifications requested in the screening document:
 
-1. **العمل أوفلاين بالكامل (100% Offline-First)**:
-   * قراءة بيانات الكورسات والوحدات من ملف `assets/data/courses.json` المدمج.
-   * تشغيل الفيديوهات من الـ Local Assets بصيغة MP4 بدون أي اتصال بالإنترنت.
-2. **شاشة استعراض الكورسات (Courses Screen)**:
-   * عرض قائمة الكورسات الطبية مع الصورة، العنوان، اسم المحاضر، وعدد الدروس.
-   * حساب وعرض نسبة الإنجاز والتقدم لكل كورس.
-   * كارت **Continue Watching** بالأعلى يتيح استئناف آخر درس غير مكتمل مباشرة.
-3. **شاشة تفاصيل الكورس (Course Details Screen)**:
-   * تنظيم الكورس في وحدات (Sections) ودروس (Lessons) متسلسلة.
-   * إظهار حالة كل درس (لم يبدأ / قيد المشاهدة مع النسبة / مكتمل ✅ / مقفول 🔒).
-4. **القفل التسلسلي الصارم (Sequential Unlocking)**:
-   * الدرس الأول في الكورس متاح دائماً، بينما تقفل بقية الدروس تلقائياً.
-   * لا يفتح أي درس إلا بعد اكتمال الدرس السابق له مباشرة.
-   * رسالة توضيحية ودية (BottomSheet) عند محاولة النقر على درس مقفول.
-5. **قاعدة الـ 90% لاكتمال الدرس (90% Completion Rule)**:
-   * اعتبار الدرس مكتملاً رسمياً بمجرد مشاهدة $90\%$ فأكثر من مدته الإجمالية.
-   * فتح الدرس التالي في القائمة تلقائياً فور تحقق الشرط.
-6. **مشغل الفيديو المتقدم (Lesson Video Player)**:
-   * أزرار التشغيل والإيقاف المؤقت (Play / Pause).
-   * شريط تقدم تفاعلي (Interactive Seek Bar) يدعم الـ RTL وتقديم/تأخير الثواني (+10s / -10s).
-   * عرض التوقيت الحالي مقارنة بإجمالي زمن الفيديو (`03:15 / 10:00`).
-   * التحكم في سرعة التشغيل (`1.0x`, `1.25x`, `1.5x`, `2.0x`).
-   * دعم وضع الشاشة الكاملة (Fullscreen Mode).
-   * استئناف المشاهدة من آخر ثانية تم الوصول إليها تلقائياً.
-7. **الانتقال للدرس التالي (Next Lesson Flow)**:
-   * زر مباشر للانتقال للدرس التالي داخل المشغل عند توفره.
-   * نافذة منبثقة تفاعلية عند اكتمال الفيديو تسأل المستخدم إن كان يرغب في تشغيل الدرس التالي فوراً.
-8. **الحفظ المحلي الدائم (Local Persistence)**:
-   * حفظ ثواني المشاهدة وحالات الاكتمال وتاريخ آخر مشاهدة محلياً عبر `SharedPreferences`.
-   * استعادة التقدم بدقة حتى بعد إغلاق التطبيق وإعادة فتحه.
-9. **معالجة الحالات المختلفة (Error & State Handling)**:
-   * معالجة حالة التحميل (Loading State).
-   * معالجة الكورس الفارغ (Empty State عبر كورس طب الطوارئ).
-   * معالجة الأخطاء والملفات غير المتوفرة (Failed State) بدون أي شاشات حمراء، مع توفير درس مخصص للاختبار ("المضادات الحيوية وآليات المقاومة - لاختبار حالة الفشل Failed State") لتجربة واجهة الخطأ وزر إعادة المحاولة.
-10. **اللغة العربية واتجاه RTL**:
-    * واجهة عربية متكاملة مع خط **Cairo** وتناسق كامل لاتجاه اليمين لليسار.
+1. **100% Offline Capability**:
+   * Reads course, section, and lesson metadata from bundled `assets/data/courses.json`.
+   * Plays local MP4 video assets without network dependency.
+2. **Course Catalog Screen**:
+   * Displays medical courses with high-resolution covers, title, instructor name, and lesson count.
+   * Calculates dynamic completion percentage for each course.
+   * Top **Continue Watching** card instantly resumes the latest in-progress lesson.
+3. **Course Details Screen**:
+   * Groups curriculum into structured sections and lessons.
+   * Clear visual indicators for lesson status: *Not Started*, *In Progress (with percentage)*, *Completed (✅)*, and *Locked (🔒)*.
+4. **Sequential Unlocking Policy**:
+   * Only the first lesson is accessible initially.
+   * Tapping a locked lesson opens an informative modal bottom sheet explaining the prerequisite lesson.
+5. **90% Progress Rule**:
+   * Watching $\ge 90\%$ marks the lesson as complete and unlocks the subsequent lesson immediately.
+6. **Feature-Packed Video Player**:
+   * Play / Pause toggle with animated feedback.
+   * Interactive seek bar adapted for RTL layouts with precise timestamps (`03:15 / 10:00`).
+   * Quick skip controls (+10s forward / -10s rewind).
+   * Playback speed selector (`1.0x`, `1.25x`, `1.5x`, `2.0x`).
+   * Fullscreen rotation and Picture-in-Picture (PiP) support.
+   * Automatic playback resumption from the last saved second.
+7. **Next Lesson Flow**:
+   * In-player "Next Lesson" banner and completion countdown.
+   * Persistent bottom banner on the main screen prompting to continue to the next lesson.
+8. **State & Error Handling**:
+   * Shimmer & Lottie animations during loading states.
+   * Dedicated empty state for courses without content (e.g., Emergency Medicine).
+   * Failed state resilience with dedicated test lessons ("Antibiotics & Resistance Mechanisms - Failed State Test") featuring retry controls.
 
 ---
 
-## 🌟 ثانياً: المميزات الإضافية المبتكرة (Bonus & Value-Added Features)
+## 🌟 Bonus & Value-Added Features
 
-ميزات هندسية وتصميمية متقدمة تم إضافتها لرفع جودة التطبيق وتجربة المستخدم لأعلى المستويات:
+Architectural and UX innovations added to elevate the platform:
 
-1. **دعم الوضع الليلي الكامل (True Dark / Light Mode)**:
-   * نظام ثيم ديناميكي متكامل يعتمد على `ThemeExtension` و Riverpod.
-   * زر تبديل سريع للثيم في الـ AppBar وفي شاشة الإعدادات، مع حفظ تفضيل المستخدم محلياً.
-2. **مشغل مصغر داخل كارت المتابعة (Embedded Mini Player)**:
-   * استمرار تشغيل الفيديو المصغر مباشرة داخل كارت متابعة المشاهدة في الشاشة الرئيسية عند الخروج من المشغل.
-3. **دعم خاصية صورة داخل صورة (Picture-in-Picture - PiP)**:
-   * إمكانية تصغير المشغل والتحكم به كـ Floating Window.
-4. **العلامة المائية الأمنية (Dynamic Security Watermark)**:
-   * طبقة نصية عائمة شبه شفافة تعرض اسم ورقم الطالب تتحرك فوق الفيديو لحماية المحتوى الأكاديمي من التسريب والقرصنة.
-5. **شريط تنقل سفلي عائم تفاعلي (Floating Glassmorphic Bottom Nav Bar)**:
-   * شريط تنقل سفلي عصري بتأثير الزجاج المضبب (BackdropFilter Blur)، وأيقونات متحركة متجاوبة.
-6. **شاشة الكورسات المشاهدة (Watched Courses)**:
-   * تبويب مخصص يستعرض كافة الكورسات والدروس التي دخلها الطالب مع سجل تاريخ وآخر وقت مشاهدة.
-7. **شاشة تتبع التقدم والإحصائيات (Progress Tracking & Analytics)**:
-   * عرض إجمالي عدد الكورسات المكتملة، إجمالي ساعات التعلم، وشارات الإنجاز التحفيزية.
-8. **انتقالات الصفحات الناعمة (Smooth Page Transitions)**:
-   * حركات انزلاق وتلاشي مخصصة بين كافة الشاشات عبر `CustomTransitionPage` في GoRouter.
-9. **رسوم التحميل المتحركة (Custom Lottie Animation)**:
-   * مؤشر تحميل أنيق وخفيف مستوحى من هوية منصة ذهين.
-10. **تجاوب كامل بنسبة 100% مع الشاشات (Full ScreenUtil Integration)**:
-    * ضبط كافة أبعاد الواجهات، الخطوط، والحواف بنظام نسبي متوافق مع كافة أحجام الهواتف والأجهزة اللوحية (`.h`, `.w`, `.r`, `.sp`).
-11. **نظافة معمارية صارمة (Strict $\le 100$ Lines per File)**:
-    * تقسيم كل ويدجيت ومكون في ملفات منفصلة صغيرة ومركزة تحقق مبدأ المسؤولية الواحدة (SRP).
-12. **حزمة اختبارات ويدجيت احترافية (Comprehensive Widget Test Suite)**:
-    * 34 اختباراً مؤتمتاً تغطي الـ UI والـ State والـ Modals مع دليل أسئلة المقابلات المرفق.
+1. **True Dark / Light Mode**:
+   * Dynamic theming system via Riverpod and custom `ThemeExtension`.
+   * One-tap quick toggle in the app bar and settings with saved user preference.
+2. **Embedded Mini Player**:
+   * Floating mini-player preview inside the home screen "Continue Watching" card when navigating back from the player.
+3. **Picture-in-Picture (PiP)**:
+   * Floating window playback allowing students to multitask while listening to lectures.
+4. **Dynamic Security Watermark**:
+   * Floating anti-piracy overlay displaying student name & ID across video frames to protect academic content.
+5. **Glassmorphic Floating Navigation Bar**:
+   * Contemporary floating bottom navigation bar with blur effect (`BackdropFilter`) and smooth tab transitions.
+6. **Watched Courses History Screen**:
+   * Dedicated tab tracking all started and finished courses with exact viewing timestamps.
+7. **Progress Analytics & Achievement Badges**:
+   * Analytics dashboard summarizing completed courses, total watch hours, and motivational milestone badges.
+8. **Custom Animated Page Transitions**:
+   * Smooth fade-and-slide page transitions via GoRouter.
+9. **Strict SRP Code Standards**:
+   * Every file in `lib/` strictly contains $\le 100$ lines.
+10. **Zero Hardcoded Strings**:
+    * Centralized localization constants in `AppStrings` and `PlayerStrings`.
 
 ---
 
-## 📱 التجاوب الكامل مع الشاشات (Screen Responsiveness)
+## 📱 Screen Responsiveness & Fluid UI
 
-تمت ترقية وتعديل كافة شاشات وويدجيتس التطبيق لتعتمد بنسبة 100% على حزمة **`flutter_screenutil`**:
-* **الارتفاعات والمسافات الرأسية**: تضبط ديناميكياً بـ `.h`.
-* **العروض والمسافات الأفقية**: تضبط ديناميكياً بـ `.w`.
-* **نصف قطر الحواف والأبعاد المربعة**: تضبط بـ `.r`.
-* **أحجام الخطوط والأيقونات**: تضبط بـ `.sp`.
-* **المقاس المرجعي المعتمد**: `Size(375, 812)` وهو مقاس الآرت بورد القياسي للتصميم.
+The UI is built with **`flutter_screenutil`** for full responsiveness across phone, phablet, and tablet screens:
+* **Vertical Spacing & Heights**: Scaled using `.h`.
+* **Horizontal Spacing & Widths**: Scaled using `.w`.
+* **Border Radii & Square Dimensions**: Scaled using `.r`.
+* **Font Sizes & Icon Sizes**: Scaled using `.sp`.
+* **Base Artboard Size**: `Size(375, 812)` standard mobile design canvas.
 
 ---
 
-## 🧪 استراتيجية الاختبارات وضمان الجودة
+## 🧪 Testing & Quality Assurance
 
-يحتوي المشروع على حزمة اختبارات مؤتمتة تغطي كافة السيناريوهات الحرجة:
+The codebase includes a comprehensive automated test suite of **34 tests**:
 
-| نوع الاختبار | المسار | ما تم اختباره |
+| Test Category | File Path | Scope & Verified Logic |
 |:---|:---|:---|
-| **Unit Tests** | `test/domain/progress_calculator_test.dart` | قاعدة الـ 90%، النسب المئوية، وحالات القسمة على صفر. |
-| **Unit Tests** | `test/domain/unlock_policy_test.dart` | الفتح التسلسلي للدروس، تحديد الدرس التالي، واستئناف المشاهدة. |
-| **Widget Tests** | `test/widgets/course_card_test.dart` | كارت الكورس، شارات البيانات، ونسبة الإنجاز. |
-| **Widget Tests** | `test/widgets/continue_watching_card_test.dart` | كارت متابعة المشاهدة وتنسيق التوقيت. |
-| **Widget Tests** | `test/widgets/locked_lesson_sheet_test.dart` | نافذة تنبيه الدرس المقفول والتفاعل مع الإغلاق. |
-| **Widget Tests** | `test/widgets/next_lesson_prompt_sheet_test.dart` | اقتراح الدرس التالي وأزرار التحكم. |
-| **Widget Tests** | `test/widgets/bottom_nav_bar_test.dart` | شريط التنقل وتغيير التبويبات. |
-| **Widget Tests** | `test/widgets/theme_toggle_button_test.dart` | تبديل المظهر وحقن الـ State في Riverpod. |
-| **Smoke Tests** | `test/widget_test.dart` | استقرار بدء تشغيل التطبيق. |
-
-> 📖 **للاطلاع على الشرح المفصل للاختبارات وطريقة الإجابة في المقابلات، راجع:** [**`INTERVIEW_TESTING_GUIDE.md`**](file:///f:/StudioProjects/thaheen/INTERVIEW_TESTING_GUIDE.md)
+| **Unit Tests** | `test/domain/progress_calculator_test.dart` | 90% completion rule, boundary values, zero duration, and progress math. |
+| **Unit Tests** | `test/domain/unlock_policy_test.dart` | Sequential unlocking, prerequisite checks, next lesson resolution, and resume logic. |
+| **Widget Tests** | `test/widgets/course_card_test.dart` | Course card rendering, badges, and progress bar calculations. |
+| **Widget Tests** | `test/widgets/continue_watching_card_test.dart` | Continue watching card layout, duration formatting, and tap callbacks. |
+| **Widget Tests** | `test/widgets/locked_lesson_sheet_test.dart` | Locked lesson bottom sheet rendering and dismissal. |
+| **Widget Tests** | `test/widgets/next_lesson_prompt_sheet_test.dart` | Next lesson prompt bottom sheet actions and auto-trigger. |
+| **Widget Tests** | `test/widgets/bottom_nav_bar_test.dart` | Floating navigation bar items and tab switching. |
+| **Widget Tests** | `test/widgets/theme_toggle_button_test.dart` | Dark/Light mode toggle button and state updates in Riverpod. |
+| **Smoke Tests** | `test/widget_test.dart` | Application launch and initial home screen mounting. |
 
 ---
 
-## 🛠️ الخيارات التقنية والتبريرات الهندسية
+## 🛠️ Technical Stack & Design Decisions
 
-* **Riverpod 2.0**: تم اختياره لأنه Compile-time safe، يسهل اختبار طبقات الـ Presentation عبر `ProviderContainer` وعزل الـ Dependencies بدون الحاجة لـ `BuildContext`.
-* **Better Player Plus (ExoPlayer)**: يوفر تحكماً دقيقاً في الأحداث، استئناف الثواني، ميزة الـ PiP، والتحكم في السرعات.
-* **GoRouter**: إدارة مسارات تصريحية تدعم تخصيص حركات التنقل (Custom Page Transitions) والـ Deep Linking.
-* **Cairo Font**: خط موحد متوازن يعطي طابعاً احترافياً للمنصات الطبية والتعليمية باللغة العربية.
-
----
-
-## 🔮 خارطة الطريق والتحسينات المستقبلية (Roadmap & Future Enhancements)
-
-1. **التعامل مع ملفات الفيديو الكبيرة في الإنتاج**:
-   * *حالياً*: الفيديوهات مدمجة كـ Local Assets لتلبية متطلبات الـ Offline Screening Task.
-   * *مستقبلاً*: استخدام HLS Video Caching مع تشفير AES-128 لتحميل الفيديوهات تدريجياً وتخزينها مشفرة داخل الـ Storage.
-2. **المزامنة السحابية (Cloud Sync)**:
-   * إضافة طبقة Sync Adapter لمزامنة التقدم مع الخادم فور عودة الاتصال بالإنترنت (Conflict Resolution via Timestamps).
-3. **الاختبارات الشاملة (E2E Integration Tests)**:
-   * توسيع الاختبارات لتشمل سيناريوهات كاملة باستخدام Flutter Driver / Integration Test.
+* **Flutter & Dart SDK**: Flutter 3.19+ / Dart 3.3+ for modern pattern matching, records, and null safety.
+* **State Management (Riverpod 2.0)**: Compile-time safe, context-free dependency injection, testable via `ProviderContainer`.
+* **Video Engine (Better Player Plus / ExoPlayer)**: Robust playback controls, precise seeking, speed scaling, PiP, and lifecycle handling.
+* **Routing (GoRouter)**: Declarative routing with parameterized paths and custom transition animations.
+* **Storage (SharedPreferences)**: Fast, reliable key-value persistence for offline progress tracking.
+* **Typography (Cairo Font)**: Unified Cairo font family tailored for professional Arabic medical and scientific educational content.
 
 ---
 
-## 👨‍💻 مطور المشروع (Project Developer)
+## 🔮 Roadmap & Production Enhancements
 
-**أحمد سعيد (Ahmed Saaid)**  
-*Flutter Developer with 3+ years of experience.*
-
-* 📧 **البريد الإلكتروني:** [ahmedsaaid908@gmail.com](mailto:ahmedsaaid908@gmail.com)
-* 📌 **معرض الأعمال (Portfolio):** [https://flutter-glow-sphere.vercel.app/](https://flutter-glow-sphere.vercel.app/)
-* 📄 **السيرة الذاتية (CV):** [Google Drive Link](https://drive.google.com/file/d/1Eozjil0AaGG6Wi2X-xiIZJj6KnDuO5a5/view?usp=drivesdk)
-* 💬 **واتساب (WhatsApp):** [+201020183845](https://wa.me/201020183845)
+1. **Scalable Media Streaming (HLS & AES-128)**:
+   * *Screening Scope*: Local bundled MP4 assets for self-contained offline evaluation.
+   * *Production Scope*: Integration with AWS S3 / Cloudflare Stream using HLS segmented video caching with encrypted storage.
+2. **Cloud Progress Synchronization**:
+   * Sync adapter layer to synchronize watch progress and certificates upon internet reconnection with timestamp-based conflict resolution.
+3. **End-to-End Integration Testing**:
+   * Automated cross-device UI flows via Flutter Driver and integration tests.
 
 ---
 
-🎯 **تم التطوير بعناية واحترافية لتلبية وتجاوز كافة متطلبات مهمة منصة ذهين — جاهز للتقييم والمراجعة الفنية بنسبة 100%.**
+## 👨‍💻 Project Developer
+
+**Ahmed Saaid (أحمد سعيد)**  
+*Flutter Developer with 3+ years of experience in mobile application engineering.*
+
+* 📧 **Email:** [ahmedsaaid908@gmail.com](mailto:ahmedsaaid908@gmail.com)
+* 📌 **Portfolio:** [https://flutter-glow-sphere.vercel.app/](https://flutter-glow-sphere.vercel.app/)
+* 📄 **Resume / CV:** [Google Drive Link](https://drive.google.com/file/d/1Eozjil0AaGG6Wi2X-xiIZJj6KnDuO5a5/view?usp=drivesdk)
+* 💬 **WhatsApp:** [+201020183845](https://wa.me/201020183845)
+
+---
+
+🎯 **Engineered with precision to exceed all technical evaluation benchmarks for Thaheen.**

@@ -12,6 +12,7 @@
 .swiftpm/
 migrate_working_dir/
 scratch/
+INTERVIEW_TESTING_GUIDE.md
 
 # IntelliJ related
 *.iml
