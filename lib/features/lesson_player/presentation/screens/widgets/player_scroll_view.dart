@@ -48,7 +48,6 @@ class PlayerScrollView extends StatelessWidget {
           SliverToBoxAdapter(
             child: VideoPlayerSection(
               betterController: service.controller,
-              playerKey: service.playerKey,
               hasError: service.hasError,
               onRetry: onRetry,
             ),

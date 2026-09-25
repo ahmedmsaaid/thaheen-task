@@ -40,52 +40,47 @@ class _PlayerGestureLayerState extends State<PlayerGestureLayer> {
 
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        final w = constraints.maxWidth;
-        final sideW = (w * 0.35).clamp(80.0, 220.0);
-
-        return Stack(
-          fit: StackFit.expand,
-          children: [
-            widget.child,
-            // Left zone: Vertical volume drag + double-tap rewind
-            Positioned(
-              left: 0,
-              top: 0,
-              bottom: 0,
-              width: sideW,
-              child: GestureDetector(
-                behavior: HitTestBehavior.translucent,
-                onVerticalDragStart: _handler.onVerticalDragStart,
-                onVerticalDragUpdate: _handler.onVerticalDrag,
-                onVerticalDragEnd: _handler.onVerticalDragEnd,
-                onDoubleTap: () => _handler.handleDoubleTapSide(isLeft: true),
-              ),
+    return Stack(
+      fit: StackFit.expand,
+      children: [
+        widget.child,
+        // Left zone: Vertical volume drag + double-tap rewind
+        Align(
+          alignment: Alignment.centerLeft,
+          child: FractionallySizedBox(
+            widthFactor: 0.35,
+            heightFactor: 1.0,
+            child: GestureDetector(
+              behavior: HitTestBehavior.translucent,
+              onVerticalDragStart: _handler.onVerticalDragStart,
+              onVerticalDragUpdate: _handler.onVerticalDrag,
+              onVerticalDragEnd: _handler.onVerticalDragEnd,
+              onDoubleTap: () => _handler.handleDoubleTapSide(isLeft: true),
             ),
-            // Right zone: Vertical volume drag + double-tap forward
-            Positioned(
-              right: 0,
-              top: 0,
-              bottom: 0,
-              width: sideW,
-              child: GestureDetector(
-                behavior: HitTestBehavior.translucent,
-                onVerticalDragStart: _handler.onVerticalDragStart,
-                onVerticalDragUpdate: _handler.onVerticalDrag,
-                onVerticalDragEnd: _handler.onVerticalDragEnd,
-                onDoubleTap: () => _handler.handleDoubleTapSide(isLeft: false),
-              ),
+          ),
+        ),
+        // Right zone: Vertical volume drag + double-tap forward
+        Align(
+          alignment: Alignment.centerRight,
+          child: FractionallySizedBox(
+            widthFactor: 0.35,
+            heightFactor: 1.0,
+            child: GestureDetector(
+              behavior: HitTestBehavior.translucent,
+              onVerticalDragStart: _handler.onVerticalDragStart,
+              onVerticalDragUpdate: _handler.onVerticalDrag,
+              onVerticalDragEnd: _handler.onVerticalDragEnd,
+              onDoubleTap: () => _handler.handleDoubleTapSide(isLeft: false),
             ),
-            if (_handler.showDoubleTapLeft)
-              const GestureDoubleTapBadge(isLeft: true),
-            if (_handler.showDoubleTapRight)
-              const GestureDoubleTapBadge(isLeft: false),
-            if (_handler.showVolumeHud)
-              GestureVolumeHud(volume: _handler.volume),
-          ],
-        );
-      },
+          ),
+        ),
+        if (_handler.showDoubleTapLeft)
+          const GestureDoubleTapBadge(isLeft: true),
+        if (_handler.showDoubleTapRight)
+          const GestureDoubleTapBadge(isLeft: false),
+        if (_handler.showVolumeHud)
+          GestureVolumeHud(volume: _handler.volume),
+      ],
     );
   }
 }

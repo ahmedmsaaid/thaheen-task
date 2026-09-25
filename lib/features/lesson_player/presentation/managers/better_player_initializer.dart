@@ -14,7 +14,6 @@ class BetterPlayerInitializer {
     required double speed,
     String? title,
     String? author,
-    required GlobalKey playerKey,
     required bool Function() isDisposed,
     required void Function(bool isPlaying) onPlayStateChanged,
     required VoidCallback onFinished,
@@ -39,7 +38,6 @@ class BetterPlayerInitializer {
     );
 
     ctrl = BetterPlayerController(config, betterPlayerDataSource: dataSource);
-    ctrl.setBetterPlayerGlobalKey(playerKey);
     ctrl.setupTranslations(const Locale('ar'));
     ctrl.setControlsEnabled(true);
     ctrl.setSpeed(speed);

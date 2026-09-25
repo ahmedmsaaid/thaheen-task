@@ -14,7 +14,6 @@ class BetterPlayerSessionLoader {
     required double speed,
     String? title,
     String? author,
-    required GlobalKey playerKey,
     required BetterPlayerSessionState session,
     required bool Function() isDisposed,
     required VoidCallback safeNotify,
@@ -33,7 +32,6 @@ class BetterPlayerSessionLoader {
         speed: speed,
         title: title,
         author: author,
-        playerKey: playerKey,
         isDisposed: isDisposed,
         onPlayStateChanged: (p) => session.isPlaying = p,
         onFinished: () {

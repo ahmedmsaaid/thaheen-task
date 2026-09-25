@@ -11,7 +11,6 @@ class BetterPlayerService extends ChangeNotifier {
   final Ref ref;
   BetterPlayerController? controller;
   bool _isDisposed = false;
-  GlobalKey playerKey = GlobalKey();
   final BetterPlayerSessionState _session = BetterPlayerSessionState();
   NextLessonPromptData? _nextLessonPrompt;
 
@@ -33,7 +32,7 @@ class BetterPlayerService extends ChangeNotifier {
 
   void clearNextLessonPrompt() { _nextLessonPrompt = null; _safeNotify(); }
   void detachCallbacks() => _session.detachCallbacks();
-  Future<void> enablePictureInPicture() => BetterPlayerControls.enablePictureInPicture(controller, playerKey);
+  Future<void> enablePictureInPicture() => BetterPlayerControls.enablePictureInPicture(controller, GlobalKey());
   Future<void> setVolume(double vol) => BetterPlayerControls.setVolume(controller, vol);
   void seekBy(int sec) => BetterPlayerControls.seekBy(controller, sec);
   void setSpeed(double spd) => BetterPlayerControls.setSpeed(controller, spd);
@@ -76,7 +75,7 @@ class BetterPlayerService extends ChangeNotifier {
     controller = await BetterPlayerSessionLoader.load(
       assetPath: assetPath, courseId: courseId, lessonId: lessonId,
       resumeSec: resumeSec, speed: speed, title: title, author: author,
-      playerKey: playerKey, session: _session,
+      session: _session,
       isDisposed: () => _isDisposed, safeNotify: _safeNotify,
       onPeriodicSave: saveCurrentProgress, onVideoFinished: onVideoFinished,
     );
@@ -86,7 +85,6 @@ class BetterPlayerService extends ChangeNotifier {
     _session.reset();
     BetterPlayerControls.dispose(controller);
     controller = null;
-    playerKey = GlobalKey();
   }
 
   @override

@@ -9,12 +9,10 @@ import 'package:thaheen/features/lesson_player/presentation/screens/widgets/wate
 /// and watermark overlay above the video.
 class BetterPlayerView extends StatelessWidget {
   final BetterPlayerController controller;
-  final Key? playerKey;
 
   const BetterPlayerView({
     super.key,
     required this.controller,
-    this.playerKey,
   });
 
   @override
@@ -26,12 +24,10 @@ class BetterPlayerView extends StatelessWidget {
         child: Stack(
           fit: StackFit.expand,
           children: [
-            // Force LTR so seekbar direction is always correct
             Directionality(
               textDirection: TextDirection.ltr,
-              child: BetterPlayer(key: playerKey, controller: controller),
+              child: BetterPlayer(controller: controller),
             ),
-            // Watermark rendered above the player
             const WatermarkOverlay(text: AppStrings.watermarkUser),
           ],
         ),

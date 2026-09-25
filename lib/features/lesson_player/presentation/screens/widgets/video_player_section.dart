@@ -6,14 +6,12 @@ import 'package:thaheen/features/lesson_player/presentation/screens/widgets/vide
 
 class VideoPlayerSection extends StatelessWidget {
   final BetterPlayerController? betterController;
-  final Key? playerKey;
   final bool hasError;
   final VoidCallback onRetry;
 
   const VideoPlayerSection({
     super.key,
     required this.betterController,
-    this.playerKey,
     required this.hasError,
     required this.onRetry,
   });
@@ -41,7 +39,6 @@ class VideoPlayerSection extends StatelessWidget {
 
     return BetterPlayerView(
       controller: betterController!,
-      playerKey: playerKey,
     );
   }
 }
