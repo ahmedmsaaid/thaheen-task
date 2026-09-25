@@ -13,6 +13,7 @@
 migrate_working_dir/
 scratch/
 INTERVIEW_TESTING_GUIDE.md
+.agents/
 
 # IntelliJ related
 *.iml
