@@ -1,0 +1,155 @@
+{
+  "courses": [
+    {
+      "id": "anatomy-101",
+      "title": "مقدمة في التشريح البشري",
+      "instructor": "د. سارة الأحمد",
+      "thumbnail": "assets/images/anatomy.png",
+      "sections": [
+        {
+          "id": "anatomy-s1",
+          "title": "الجهاز الهيكلي",
+          "lessons": [
+            {
+              "id": "anatomy-l1",
+              "title": "مقدمة عن العظام والهيكل العظمي",
+              "durationSec": 143,
+              "video": "assets/videos/lesson1.mp4"
+            },
+            {
+              "id": "anatomy-l2",
+              "title": "أنواع المفاصل وحركتها",
+              "durationSec": 467,
+              "video": "assets/videos/lesson2.mp4"
+            },
+            {
+              "id": "anatomy-l3",
+              "title": "الجمجمة والعمود الفقري",
+              "durationSec": 143,
+              "video": "assets/videos/lesson3.mp4"
+            }
+          ]
+        },
+        {
+          "id": "anatomy-s2",
+          "title": "الجهاز العضلي",
+          "lessons": [
+            {
+              "id": "anatomy-l4",
+              "title": "أنواع العضلات ووظائفها",
+              "durationSec": 467,
+              "video": "assets/videos/lesson4.mp4"
+            },
+            {
+              "id": "anatomy-l5",
+              "title": "آلية انقباض العضلات (فيديو غير متوفر - لاختبار حالة الفشل Failed State)",
+              "durationSec": 143,
+              "video": "assets/videos/missing_anatomy_lesson.mp4"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "biostatistics-101",
+      "title": "الإحصاء الحيوي للعلوم الصحية",
+      "instructor": "أ. رنا الزهراني",
+      "thumbnail": "assets/images/biostatistics.png",
+      "sections": [
+        {
+          "id": "bio-s1",
+          "title": "أساسيات الإحصاء",
+          "lessons": [
+            {
+              "id": "bio-l1",
+              "title": "مقدمة في الإحصاء الحيوي",
+              "durationSec": 143,
+              "video": "assets/videos/lesson1.mp4"
+            },
+            {
+              "id": "bio-l2",
+              "title": "أنواع البيانات والمتغيرات",
+              "durationSec": 467,
+              "video": "assets/videos/lesson2.mp4"
+            }
+          ]
+        },
+        {
+          "id": "bio-s2",
+          "title": "التوزيعات الاحتمالية",
+          "lessons": [
+            {
+              "id": "bio-l3",
+              "title": "التوزيع الطبيعي والمنحنى الجرسي",
+              "durationSec": 143,
+              "video": "assets/videos/lesson3.mp4"
+            },
+            {
+              "id": "bio-l4",
+              "title": "اختبارات الفرضيات الإحصائية",
+              "durationSec": 467,
+              "video": "assets/videos/lesson4.mp4"
+            },
+            {
+              "id": "bio-l5",
+              "title": "الارتباط والانحدار الخطي",
+              "durationSec": 143,
+              "video": "assets/videos/lesson1.mp4"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pharmacology-101",
+      "title": "أساسيات علم الأدوية",
+      "instructor": "د. خالد المطيري",
+      "thumbnail": "assets/images/pharmacology.png",
+      "sections": [
+        {
+          "id": "pharma-s1",
+          "title": "مقدمة في الصيدلة",
+          "lessons": [
+            {
+              "id": "pharma-l1",
+              "title": "تصنيف الأدوية وآلية عملها",
+              "durationSec": 143,
+              "video": "assets/videos/lesson1.mp4"
+            },
+            {
+              "id": "pharma-l2",
+              "title": "الحرائك الدوائية: الامتصاص والتوزيع",
+              "durationSec": 467,
+              "video": "assets/videos/lesson2.mp4"
+            }
+          ]
+        },
+        {
+          "id": "pharma-s2",
+          "title": "الأدوية الشائعة",
+          "lessons": [
+            {
+              "id": "pharma-l3",
+              "title": "مضادات الالتهاب غير الستيرويدية",
+              "durationSec": 143,
+              "video": "assets/videos/lesson3.mp4"
+            },
+            {
+              "id": "pharma-l4",
+              "title": "المضادات الحيوية وآليات المقاومة (فيديو غير متوفر - لاختبار حالة الفشل Failed State)",
+              "durationSec": 467,
+              "video": "assets/videos/missing_pharma_lesson.mp4"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "emergency-medicine-101",
+      "title": "طب الطوارئ والحالات الحرجة",
+      "instructor": "د. أحمد الشريف",
+      "thumbnail": "assets/images/anatomy.png",
+      "sections": []
+    }
+  ]
+}
