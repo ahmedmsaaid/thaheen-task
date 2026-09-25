@@ -25,7 +25,7 @@ class HatNavItemWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     const duration = Duration(milliseconds: 300);
     final pad = isSelected
-        ? EdgeInsets.symmetric(horizontal: 16.w.w, vertical: 10.h.h)
+        ? EdgeInsets.symmetric(horizontal: 16.w, vertical: 10.h)
         : EdgeInsets.all(10.r);
 
     return GestureDetector(
