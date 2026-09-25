@@ -25,7 +25,7 @@ class BetterPlayerConfigBuilder {
       autoDispose: false,
       looping: false,
       translations: PlayerTranslations.all,
-      overlay: const Stack(
+      overlay:  Stack(
         fit: StackFit.expand,
         children: [WatermarkOverlay(text: AppStrings.watermarkUser)],
       ),

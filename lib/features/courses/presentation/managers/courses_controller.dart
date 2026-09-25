@@ -57,3 +57,5 @@ class CoursesController extends Notifier<CoursesState> {
 
 final coursesControllerProvider =
     NotifierProvider<CoursesController, CoursesState>(CoursesController.new);
+
+final courseSearchQueryProvider = StateProvider<String>((ref) => '');

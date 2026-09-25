@@ -86,7 +86,7 @@ class CourseOverviewCard extends StatelessWidget {
                 value: '${course.totalSections}',
                 label: PlayerStrings.sectionsLabel,
               ),
-              const CourseStatItem(
+               CourseStatItem(
                 icon: Icons.verified_rounded,
                 value: PlayerStrings.certificateLabel,
                 label: PlayerStrings.onCompletionLabel,

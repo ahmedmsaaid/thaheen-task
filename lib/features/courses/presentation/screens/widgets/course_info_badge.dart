@@ -10,7 +10,7 @@ class CourseInfoBadge extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 8.w.w, vertical: 4.h.h),
+      padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 4.h),
       decoration: BoxDecoration(
         color: Colors.white.withValues(alpha: 0.18),
         borderRadius: BorderRadius.circular(20.r),

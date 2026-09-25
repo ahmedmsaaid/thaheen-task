@@ -14,7 +14,7 @@ class MainBottomNavItemsRow extends StatelessWidget {
     required this.onTabSelected,
   });
 
-  static const List<NavItemData> _items = [
+  List<NavItemData> get _items => [
     NavItemData(
       icon: Icons.menu_book_outlined,
       selectedIcon: Icons.menu_book_rounded,

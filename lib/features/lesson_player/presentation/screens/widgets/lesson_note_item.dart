@@ -7,12 +7,14 @@ class LessonNoteItem extends StatelessWidget {
   final String text;
   final String formattedTime;
   final VoidCallback onSeek;
+  final VoidCallback? onDelete;
 
   const LessonNoteItem({
     super.key,
     required this.text,
     required this.formattedTime,
     required this.onSeek,
+    this.onDelete,
   });
 
   @override
@@ -42,8 +44,11 @@ class LessonNoteItem extends StatelessWidget {
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Icon(Icons.play_arrow_rounded,
-                      size: 14, color: colors.primary),
+                  Icon(
+                    Icons.play_arrow_rounded,
+                    size: 14.sp,
+                    color: colors.primary,
+                  ),
                   SizedBox(width: 2.w),
                   Text(
                     formattedTime,
@@ -54,13 +59,28 @@ class LessonNoteItem extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(width: 12.w),
+          SizedBox(width: 10.w),
           Expanded(
             child: Text(
               text,
-              style: AppTextStyles.bodyPrimary(context).copyWith(fontSize: 13),
+              style: AppTextStyles.bodyPrimary(context).copyWith(fontSize: 13.sp),
             ),
           ),
+          if (onDelete != null) ...[
+            SizedBox(width: 6.w),
+            InkWell(
+              onTap: onDelete,
+              borderRadius: BorderRadius.circular(12.r),
+              child: Padding(
+                padding: EdgeInsets.all(4.r),
+                child: Icon(
+                  Icons.delete_outline_rounded,
+                  size: 18.sp,
+                  color: colors.error.withValues(alpha: 0.8),
+                ),
+              ),
+            ),
+          ],
         ],
       ),
     );

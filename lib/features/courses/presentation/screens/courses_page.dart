@@ -1,9 +1,10 @@
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:thaheen/core/widgets/responsive_center.dart';
 import 'package:thaheen/features/courses/presentation/screens/widgets/continue_watching_sliver.dart';
 import 'package:thaheen/features/courses/presentation/screens/widgets/courses_content_sliver.dart';
+import 'package:thaheen/features/courses/presentation/screens/widgets/courses_search_bar.dart';
 import 'package:thaheen/features/courses/presentation/screens/widgets/courses_section_header.dart';
 
 class CoursesPage extends ConsumerWidget {
@@ -15,7 +16,9 @@ class CoursesPage extends ConsumerWidget {
       maxWidth: 800.w,
       child: CustomScrollView(
         slivers: [
-          SliverToBoxAdapter(child: SizedBox(height: 12.h)),
+          SliverToBoxAdapter(child: SizedBox(height: 10.h)),
+          const SliverToBoxAdapter(child: CoursesSearchBar()),
+          SliverToBoxAdapter(child: SizedBox(height: 6.h)),
           const ContinueWatchingSliver(),
           const CoursesSectionHeader(),
           const CoursesContentSliver(),
@@ -25,3 +28,4 @@ class CoursesPage extends ConsumerWidget {
     );
   }
 }
+

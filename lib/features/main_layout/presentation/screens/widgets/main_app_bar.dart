@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:thaheen/core/theme/app_colors.dart';
 import 'package:thaheen/core/widgets/responsive_center.dart';
+import 'package:thaheen/features/main_layout/presentation/screens/widgets/language_toggle_button.dart';
 import 'package:thaheen/features/main_layout/presentation/screens/widgets/main_app_logo_avatar.dart';
 import 'package:thaheen/features/main_layout/presentation/screens/widgets/theme_toggle_button.dart';
 import 'package:thaheen/features/main_layout/presentation/screens/widgets/user_app_bar_greeting.dart';
@@ -35,7 +36,7 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
       child: SafeArea(
         bottom: false,
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16.w.w, vertical: 8.h.h),
+          padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
           child: ResponsiveCenter(
             maxWidth: 900.w,
             child: Row(
@@ -43,6 +44,8 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
                 const MainAppLogoAvatar(),
                 SizedBox(width: 12.w),
                 const Expanded(child: UserAppBarGreeting()),
+                const LanguageToggleButton(),
+                SizedBox(width: 8.w),
                 const ThemeToggleButton(),
               ],
             ),
@@ -52,3 +55,4 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
     );
   }
 }
+

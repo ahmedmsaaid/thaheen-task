@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -8,13 +9,14 @@ import 'package:thaheen/core/router/app_router.dart';
 import 'package:thaheen/core/theme/app_theme.dart';
 import 'package:thaheen/core/theme/theme_controller.dart';
 import 'package:thaheen/core/theme/theme_local_storage.dart';
+import 'package:thaheen/core/utils/app_toast.dart';
+import 'package:thaheen/features/lesson_player/data/datasources/notes_local_storage.dart';
 import 'package:thaheen/features/lesson_player/data/datasources/progress_local_storage.dart';
 import 'package:thaheen/features/lesson_player/data/models/lesson_progress_model.dart';
 
-import 'package:thaheen/core/utils/app_toast.dart';
-
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await EasyLocalization.ensureInitialized();
   await SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.landscapeLeft,
@@ -25,8 +27,17 @@ Future<void> main() async {
   Hive.registerAdapter(LessonProgressModelAdapter());
   await ProgressLocalStorage.openBox();
   await ThemeLocalStorage.openBox();
+  await NotesLocalStorage.openBox();
 
-  runApp(const ProviderScope(child: ThaheenApp()));
+  runApp(
+    EasyLocalization(
+      supportedLocales: const [Locale('ar'), Locale('en')],
+      path: 'assets/translations',
+      fallbackLocale: const Locale('ar'),
+      startLocale: const Locale('ar'),
+      child: const ProviderScope(child: ThaheenApp()),
+    ),
+  );
 }
 
 class ThaheenApp extends ConsumerWidget {
@@ -47,11 +58,10 @@ class ThaheenApp extends ConsumerWidget {
         theme: AppTheme.lightTheme,
         darkTheme: AppTheme.darkTheme,
         themeMode: themeMode,
+        localizationsDelegates: context.localizationDelegates,
+        supportedLocales: context.supportedLocales,
+        locale: context.locale,
         routerConfig: AppRouter.router,
-        builder: (context, routerChild) => Directionality(
-          textDirection: TextDirection.rtl,
-          child: routerChild!,
-        ),
       ),
     );
   }

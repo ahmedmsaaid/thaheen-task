@@ -101,9 +101,11 @@ lib/
 | **Advanced Video Player** | ✅ **Completed** | Play/Pause, RTL interactive Seek Bar, +10s/-10s buttons, Speed control (1x–2x), Fullscreen & PiP. |
 | **Auto/Prompt Next Lesson** | ✅ **Completed** | Countdown banner & prompt bottom sheet suggesting next lesson upon video completion. |
 | **Local Persistence** | ✅ **Completed** | Persistent watch progress, completion flags, and timestamps via `SharedPreferences`. |
-| **Arabic & RTL Support** | ✅ **Completed** | Native RTL layouts, mirrored icons, and unified Cairo typography. |
+| **Arabic & RTL Support** | ✅ **Completed** | Native RTL/LTR layouts, dynamic language switcher (Arabic ⇄ English), and unified Cairo typography. |
 | **State & Error Handling** | ✅ **Completed** | Custom Lottie loading, Empty course state, and explicit Failed state test lessons with retry actions. |
-| **Automated Tests** | ✅ **Completed** | **34 Tests passing** (Unit tests for domain math + Widget tests for interactions). |
+| **Search & Normalization** | ✅ **Completed** | Real-time search with Arabic character normalization (diacritics, alef, taa marbouta). |
+| **Lesson Notes CRUD** | ✅ **Completed** | Full local persistence for per-lesson timestamped notes with add & delete capabilities. |
+| **Automated Tests** | ✅ **Completed** | **41 Tests passing** (Unit tests for domain math + Widget tests for interactions). |
 
 ---
 
@@ -114,9 +116,9 @@ All mandatory technical specifications requested in the screening document:
 1. **100% Offline Capability**:
    * Reads course, section, and lesson metadata from bundled `assets/data/courses.json`.
    * Plays local MP4 video assets without network dependency.
-2. **Course Catalog Screen**:
-   * Displays medical courses with high-resolution covers, title, instructor name, and lesson count.
-   * Calculates dynamic completion percentage for each course.
+2. **Course Catalog & Smart Search**:
+   * Displays medical courses with covers, instructor name, and lesson count.
+   * Real-time search with Arabic normalization (matches variations like `أ/إ/ا`, `ة/ه`, `ى/ي` and ignores tashkeel).
    * Top **Continue Watching** card instantly resumes the latest in-progress lesson.
 3. **Course Details Screen**:
    * Groups curriculum into structured sections and lessons.
@@ -139,6 +141,7 @@ All mandatory technical specifications requested in the screening document:
 8. **State & Error Handling**:
    * Shimmer & Lottie animations during loading states.
    * Dedicated empty state for courses without content (e.g., Emergency Medicine).
+   * Dedicated empty search state when no courses match query.
    * Failed state resilience with dedicated test lessons ("Antibiotics & Resistance Mechanisms - Failed State Test") featuring retry controls.
 
 ---
@@ -147,27 +150,30 @@ All mandatory technical specifications requested in the screening document:
 
 Architectural and UX innovations added to elevate the platform:
 
-1. **True Dark / Light Mode**:
-   * Dynamic theming system via Riverpod and custom `ThemeExtension`.
-   * One-tap quick toggle in the app bar and settings with saved user preference.
-2. **Embedded Mini Player**:
+1. **Smart Arabic Search with Character Normalization**:
+   * Fast, real-time filtering that normalizes diacritics and Arabic letter variations.
+2. **Per-Lesson Notes CRUD (Local Persistence via Hive)**:
+   * Students can record timestamped notes per lesson, jump to exact playback seconds upon tap, and delete notes.
+3. **Dynamic Multi-Language Toggle (Arabic ⇄ English)**:
+   * Instant one-tap switch in the top AppBar dynamically updating text direction (`RTL` / `LTR`) and locale.
+4. **True Dark / Light Mode**:
+   * Dynamic theming system via Riverpod and custom `ThemeExtension` with saved user preference.
+5. **Embedded Mini Player**:
    * Floating mini-player preview inside the home screen "Continue Watching" card when navigating back from the player.
-3. **Picture-in-Picture (PiP)**:
+6. **Picture-in-Picture (PiP)**:
    * Floating window playback allowing students to multitask while listening to lectures.
-4. **Dynamic Security Watermark**:
+7. **Dynamic Security Watermark**:
    * Floating anti-piracy overlay displaying student name & ID across video frames to protect academic content.
-5. **Glassmorphic Floating Navigation Bar**:
+8. **Glassmorphic Floating Navigation Bar**:
    * Contemporary floating bottom navigation bar with blur effect (`BackdropFilter`) and smooth tab transitions.
-6. **Watched Courses History Screen**:
+9. **Watched Courses History Screen**:
    * Dedicated tab tracking all started and finished courses with exact viewing timestamps.
-7. **Progress Analytics & Achievement Badges**:
-   * Analytics dashboard summarizing completed courses, total watch hours, and motivational milestone badges.
-8. **Custom Animated Page Transitions**:
-   * Smooth fade-and-slide page transitions via GoRouter.
-9. **Strict SRP Code Standards**:
-   * Every file in `lib/` strictly contains $\le 100$ lines.
-10. **Zero Hardcoded Strings**:
-    * Centralized localization constants in `AppStrings` and `PlayerStrings`.
+10. **Progress Analytics & Achievement Badges**:
+    * Analytics dashboard summarizing completed courses, total watch hours, and motivational milestone badges.
+11. **Strict SRP Code Standards**:
+    * Every file in `lib/` strictly contains $\le 100$ lines.
+12. **Comprehensive Automated Test Suite (41 Tests)**:
+    * 41 Unit, Domain, and Widget tests verifying calculations, policies, search, notes, and UI workflows.
 
 ---
 

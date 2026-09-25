@@ -26,7 +26,7 @@ class PlaylistLessonTileTrailing extends StatelessWidget {
           color: colors.primary,
           borderRadius: BorderRadius.circular(12.r),
         ),
-        child: const Text(
+        child:  Text(
           PlayerStrings.playingNow,
           style: TextStyle(
             color: Colors.white,

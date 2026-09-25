@@ -30,7 +30,7 @@ class PlayerTabBarSection extends StatefulWidget {
 class _PlayerTabBarSectionState extends State<PlayerTabBarSection> {
   int _selectedTabIndex = 0;
 
-  static const List<PlayerTabItem> _tabs = [
+  List<PlayerTabItem> get _tabs => [
     (title: PlayerStrings.tabLessons, icon: Icons.playlist_play_rounded),
     (title: PlayerStrings.tabOverview, icon: Icons.info_outline_rounded),
     (title: PlayerStrings.tabNotes, icon: Icons.description_outlined),
@@ -64,6 +64,8 @@ class _PlayerTabBarSectionState extends State<PlayerTabBarSection> {
                 ),
               _ => LessonNotesResourcesTab(
                   key: const ValueKey(2),
+                  courseId: widget.course.id,
+                  lessonId: widget.activeLessonId,
                   service: widget.service,
                 ),
             },

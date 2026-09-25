@@ -28,7 +28,7 @@ class BetterPlayerView extends StatelessWidget {
               textDirection: TextDirection.ltr,
               child: BetterPlayer(controller: controller),
             ),
-            const WatermarkOverlay(text: AppStrings.watermarkUser),
+             WatermarkOverlay(text: AppStrings.watermarkUser),
           ],
         ),
       ),

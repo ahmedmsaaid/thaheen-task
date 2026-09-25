@@ -30,7 +30,7 @@ class GestureDoubleTapBadge extends StatelessWidget {
                   const Icon(Icons.replay_10_rounded,
                       color: Colors.white, size: 28),
                   SizedBox(width: 8.w),
-                  const Text(
+                   Text(
                     '10- ${AppStrings.secondsUnit}',
                     style: TextStyle(
                       color: Colors.white,
@@ -39,7 +39,7 @@ class GestureDoubleTapBadge extends StatelessWidget {
                     ),
                   ),
                 ] else ...[
-                  const Text(
+                   Text(
                     '10+ ${AppStrings.secondsUnit}',
                     style: TextStyle(
                       color: Colors.white,

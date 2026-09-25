@@ -36,10 +36,11 @@ class CourseCardHeader extends StatelessWidget {
         ),
         Positioned(
           bottom: 12.h, right: 14.w, left: 14.w,
-          child: Row(
+          child: Wrap(
+            spacing: 8.w,
+            runSpacing: 4.h,
             children: [
               CourseInfoBadge(icon: Icons.play_lesson_rounded, label: '${course.totalLessons} ${AppStrings.lessonsCount}'),
-              SizedBox(width: 8.w),
               CourseInfoBadge(icon: Icons.folder_outlined, label: '${course.totalSections} ${AppStrings.sectionCount}'),
             ],
           ),

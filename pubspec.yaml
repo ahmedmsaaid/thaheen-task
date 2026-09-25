@@ -36,6 +36,7 @@ dependencies:
   flutter_svg: ^2.0.16
   better_player_plus: 1.1.5
   flutter_screenutil: ^5.9.3
+  easy_localization: ^3.0.7
 
 dev_dependencies:
   flutter_test:
@@ -53,3 +54,4 @@ flutter:
     - assets/images/png/
     - assets/videos/
     - assets/lotties/
+    - assets/translations/

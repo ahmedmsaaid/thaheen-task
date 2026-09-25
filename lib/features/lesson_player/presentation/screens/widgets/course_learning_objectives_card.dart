@@ -32,9 +32,9 @@ class CourseLearningObjectivesCard extends StatelessWidget {
             ],
           ),
           SizedBox(height: 12.h),
-          const _LearningPoint(text: PlayerStrings.learningObjective1),
-          const _LearningPoint(text: PlayerStrings.learningObjective2),
-          const _LearningPoint(text: PlayerStrings.learningObjective3),
+           _LearningPoint(text: PlayerStrings.learningObjective1),
+           _LearningPoint(text: PlayerStrings.learningObjective2),
+           _LearningPoint(text: PlayerStrings.learningObjective3),
         ],
       ),
     );

@@ -67,7 +67,7 @@ class LessonAddNoteCard extends StatelessWidget {
                     EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
               ),
               icon: const Icon(Icons.bookmark_add_rounded, size: 18),
-              label: const Text(
+              label:  Text(
                 PlayerStrings.saveNote,
                 style: TextStyle(fontSize: 13, fontWeight: FontWeight.bold),
               ),
