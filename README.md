@@ -28,8 +28,11 @@
 ### Key Highlights
 * **Zero Internet Required**: All assets and data loaded completely offline.
 * **Arabic & RTL Native**: Full Right-To-Left layout integration with unified **Cairo** typography.
+* **Internationalization**: Powered by `easy_localization` supporting instant dynamic switching between Arabic and English.
+* **Smart Arabic Search**: Diacritic/tashkeel removal and letter normalization (`أ/إ/آ` ➔ `ا`, `ة` ➔ `ه`, `ى` ➔ `ي`).
+* **Offline Lesson Notes**: Full CRUD persistence for timestamped notes using Hive.
 * **Strict Architecture Rules**: No file exceeds 100 lines of code; zero hardcoded strings.
-* **Robust Automated Testing**: 34 Unit & Widget tests covering domain rules, state changes, and UI workflows.
+* **Robust Automated Testing**: 41 Unit, Domain, and Widget tests covering domain rules, state changes, and UI workflows.
 
 ---
 
@@ -53,7 +56,7 @@ flutter pub get
 # 3. Run the application on connected device/emulator
 flutter run
 
-# 4. Execute full automated test suite (34 Unit + Widget tests)
+# 4. Execute full automated test suite (41 Unit + Widget tests)
 flutter test
 
 # 5. Run static analysis for code quality & style checks
@@ -64,26 +67,26 @@ dart analyze lib test
 
 ## 📐 Architecture & Folder Structure
 
-The project follows **Clean Architecture** combined with a **Feature-Driven Pattern** to enforce separation of concerns, high maintainability, and testability.
+The project follows **Clean Architecture** combined with a **Feature-Driven Pattern** to enforce separation of concerns, high maintainability, and testability. Every single file is constrained to $\le 100$ lines.
 
 ```
 lib/
-├── main.dart                     # App entry point with ProviderScope & ScreenUtilInit
+├── main.dart                     # App entry point with EasyLocalization, ProviderScope & ScreenUtilInit
 ├── core/                         # Shared core infrastructure layer
-│   ├── constants/                # AppStrings, Asset paths, and static configurations
+│   ├── constants/                # AppStrings, PlayerStrings, Asset paths, and static configurations
 │   ├── providers/                # Global dependency injection & shared providers
 │   ├── router/                   # GoRouter configuration & custom smooth transitions
 │   ├── theme/                    # Dynamic dual-theme system, AppColors & typography
-│   ├── utils/                    # Helper utilities, toasts, formatters & extensions
+│   ├── utils/                    # ArabicNormalizer, formatters, toasts & extensions
 │   └── widgets/                  # Reusable atomic UI widgets
 └── features/                     # Independent domain & feature slices
     ├── splash/                   # Animated startup screen
-    ├── main_layout/              # Root scaffold with floating navigation & mini player
-    ├── courses/                  # Course catalog & "Continue Watching" smart card
+    ├── main_layout/              # Root scaffold with floating navigation & language toggle
+    ├── courses/                  # Course catalog, search bar & "Continue Watching" card
     ├── course_details/           # Module tree, lesson states, and locked lesson modal
     ├── watched_courses/          # History of opened/completed courses & timestamps
     ├── progress_tracking/        # Learning statistics, total hours & achievement badges
-    ├── lesson_player/            # Custom video player, watermark, and 90% completion
+    ├── lesson_player/            # Video engine, Hive notes, watermark, and 90% completion
     └── settings/                 # Theme toggle (Dark/Light mode) & user preferences
 ```
 
@@ -100,9 +103,9 @@ lib/
 | **90% Completion Rule** | ✅ **Completed** | Lesson marked completed and next lesson unlocked automatically when $\ge 90\%$ watched. |
 | **Advanced Video Player** | ✅ **Completed** | Play/Pause, RTL interactive Seek Bar, +10s/-10s buttons, Speed control (1x–2x), Fullscreen & PiP. |
 | **Auto/Prompt Next Lesson** | ✅ **Completed** | Countdown banner & prompt bottom sheet suggesting next lesson upon video completion. |
-| **Local Persistence** | ✅ **Completed** | Persistent watch progress, completion flags, and timestamps via `SharedPreferences`. |
+| **Local Persistence** | ✅ **Completed** | Persistent watch progress and completion flags via `SharedPreferences`, and notes via `Hive`. |
 | **Arabic & RTL Support** | ✅ **Completed** | Native RTL/LTR layouts, dynamic language switcher (Arabic ⇄ English), and unified Cairo typography. |
-| **State & Error Handling** | ✅ **Completed** | Custom Lottie loading, Empty course state, and explicit Failed state test lessons with retry actions. |
+| **State & Error Handling** | ✅ **Completed** | Custom Lottie loading, Empty course state, Empty search results, and explicit Failed state test lessons with retry actions. |
 | **Search & Normalization** | ✅ **Completed** | Real-time search with Arabic character normalization (diacritics, alef, taa marbouta). |
 | **Lesson Notes CRUD** | ✅ **Completed** | Full local persistence for per-lesson timestamped notes with add & delete capabilities. |
 | **Automated Tests** | ✅ **Completed** | **41 Tests passing** (Unit tests for domain math + Widget tests for interactions). |
@@ -154,8 +157,8 @@ Architectural and UX innovations added to elevate the platform:
    * Fast, real-time filtering that normalizes diacritics and Arabic letter variations.
 2. **Per-Lesson Notes CRUD (Local Persistence via Hive)**:
    * Students can record timestamped notes per lesson, jump to exact playback seconds upon tap, and delete notes.
-3. **Dynamic Multi-Language Toggle (Arabic ⇄ English)**:
-   * Instant one-tap switch in the top AppBar dynamically updating text direction (`RTL` / `LTR`) and locale.
+3. **Dynamic Multi-Language Toggle (`easy_localization`)**:
+   * Instant one-tap switch in the top AppBar dynamically updating text direction (`RTL` / `LTR`), JSON dictionaries, and UI strings.
 4. **True Dark / Light Mode**:
    * Dynamic theming system via Riverpod and custom `ThemeExtension` with saved user preference.
 5. **Embedded Mini Player**:
@@ -190,12 +193,14 @@ The UI is built with **`flutter_screenutil`** for full responsiveness across pho
 
 ## 🧪 Testing & Quality Assurance
 
-The codebase includes a comprehensive automated test suite of **34 tests**:
+The codebase includes a comprehensive automated test suite of **41 tests**:
 
 | Test Category | File Path | Scope & Verified Logic |
 |:---|:---|:---|
 | **Unit Tests** | `test/domain/progress_calculator_test.dart` | 90% completion rule, boundary values, zero duration, and progress math. |
 | **Unit Tests** | `test/domain/unlock_policy_test.dart` | Sequential unlocking, prerequisite checks, next lesson resolution, and resume logic. |
+| **Unit Tests** | `test/domain/arabic_normalizer_test.dart` | Diacritics stripping, letter normalization (Alef, Taa Marbuta, Yaa), and fuzzy Arabic query matching. |
+| **Unit Tests** | `test/domain/notes_test.dart` | Hive local persistence CRUD operations for timestamped lesson notes. |
 | **Widget Tests** | `test/widgets/course_card_test.dart` | Course card rendering, badges, and progress bar calculations. |
 | **Widget Tests** | `test/widgets/continue_watching_card_test.dart` | Continue watching card layout, duration formatting, and tap callbacks. |
 | **Widget Tests** | `test/widgets/locked_lesson_sheet_test.dart` | Locked lesson bottom sheet rendering and dismissal. |
@@ -210,9 +215,10 @@ The codebase includes a comprehensive automated test suite of **34 tests**:
 
 * **Flutter & Dart SDK**: Flutter 3.19+ / Dart 3.3+ for modern pattern matching, records, and null safety.
 * **State Management (Riverpod 2.0)**: Compile-time safe, context-free dependency injection, testable via `ProviderContainer`.
+* **Localization (`easy_localization`)**: Robust JSON-based multi-language engine with dynamic live locale switching.
 * **Video Engine (Better Player Plus / ExoPlayer)**: Robust playback controls, precise seeking, speed scaling, PiP, and lifecycle handling.
 * **Routing (GoRouter)**: Declarative routing with parameterized paths and custom transition animations.
-* **Storage (SharedPreferences)**: Fast, reliable key-value persistence for offline progress tracking.
+* **Storage (Hive + SharedPreferences)**: Fast, structured NoSQL persistence for notes and key-value storage for progress.
 * **Typography (Cairo Font)**: Unified Cairo font family tailored for professional Arabic medical and scientific educational content.
 
 ---
